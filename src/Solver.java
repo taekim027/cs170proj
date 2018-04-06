@@ -30,10 +30,11 @@ public class Solver {
         // Set as current best
         Tour best = new Tour(currentSolution.getTour());
 
+
+        int iterations = 0;
         // Loop until system has cooled
         while (temp > 1) {
-            
-
+            iterations++;
 
             // Create new neighbour tour
             Tour newSolution = new Tour(currentSolution.getTour());
@@ -56,6 +57,11 @@ public class Solver {
             //TODO: come up with neighbor() function
             newSolution = currentSolution.neighbor();
 
+            //TODO: check if newsolution is a valid tour
+            if(!newSolution.isValid()) {
+                System.out.println("This is not valid!");
+            }
+
             // Get energy of solutions
             double currentEnergy = currentSolution.getDistance();
             double neighbourEnergy = newSolution.getDistance();
@@ -75,6 +81,7 @@ public class Solver {
         }
         System.out.println("Final solution distance: " + best.getDistance());
         System.out.println("Tour: " + best);
+        System.out.println("Iterations taken: " + iterations);
 
     }
 

@@ -48,8 +48,8 @@ public class Tour {
         ordering.add(6);
         ordering.add(1);
 
-        numKingdoms = ordering.size();
-		for(int i = 0; i < numKingdoms - 1; i++) {
+        numKingdoms = cost.length;
+		for(int i = 0; i < ordering.size() - 1; i++) {
 			//if ith is the same as i+1th, it's conquered
 			if(ordering.get(i) == ordering.get(i+1)) {
 				conquered.add(ordering.get(i));
