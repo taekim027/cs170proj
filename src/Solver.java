@@ -37,6 +37,7 @@ public class Solver {
 
             // Create new neighbour tour
             Tour newSolution = new Tour(currentSolution.getTour());
+            //ignore this, we're not generating neighbors this way
             /*
             // Get a random positions in the tour
             int tourPos1 = (int) (newSolution.tourSize() * Math.random());
@@ -52,7 +53,7 @@ public class Solver {
 
             */
 
-
+            //TODO: come up with neighbor() function
             newSolution = currentSolution.neighbor();
 
             // Get energy of solutions
