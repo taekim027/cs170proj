@@ -1,4 +1,8 @@
-//Simulated Annealing
+/**
+ * The highest level simulated annealing deciding which cities to conquer
+ * A 'state' in this case is a set cover of cities to conquer
+ */
+
 package V0;
 
 import java.util.ArrayList;

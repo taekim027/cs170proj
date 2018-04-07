@@ -1,7 +1,6 @@
-/*
-* TourManager.java
-* Holds the cities of a tour
-*/
+/**
+ * Holds the cities of a tour
+ */
 package V0;
 
 import java.util.ArrayList;

@@ -1,3 +1,8 @@
+/**
+ * The list of cities to conquer that makes every city surrender is analogous to a set cover
+ * States to the SimAnnMaster.java
+ */
+
 package V0;
 
 public class SetCover {

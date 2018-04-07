@@ -1,7 +1,6 @@
-/*
-* Tour.java
-* Stores a candidate tour through all cities
-*/
+/**
+ * Stores a valid tour
+ */
 package V0;
 
 import java.util.ArrayList;

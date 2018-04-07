@@ -1,4 +1,10 @@
-//Simulated Annealing
+/**
+ * Solves the traveling salesman problem using simulated annealing
+ * Requires as an input the n x n shortest distance matrix and the list of cities to conquer
+ * shortestPath should not have any negative entries
+ * Finds shortest tour between the conquered cities
+ */
+
 package V0;
 
 import java.util.ArrayList;
