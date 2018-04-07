@@ -63,7 +63,7 @@ public class Tour {
 	}
 
 	//COMPLETE
-	//returns 'energy' of current state
+	//returns 'cost' of current state
 	public double getDistance() {
 		double sum = 0;
 		for(int i = 0; i < ordering.size() - 1; i++) {
