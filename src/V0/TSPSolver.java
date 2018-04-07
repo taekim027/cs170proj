@@ -13,9 +13,8 @@ public class TSPSolver {
     public static double finalCost;
     public static ArrayList<Integer> finalOrdering;
 
-    public TSPSolver(double[][] shortestPath, ArrayList<Integer> conquered) {
-        this.shortestPath = shortestPath;
-        this.conquered = conquered;
+    public TSPSolver(double[][] shortestPath) {
+        TSPSolver.shortestPath = shortestPath;
     }
 
     // Calculate the acceptance probability
@@ -28,9 +27,11 @@ public class TSPSolver {
         return Math.exp((energy - newEnergy) / temperature);
     }
 
-    public static void solve() {
+    public static void solve(ArrayList<Integer> conquered) {
         // Create and add our cities
         
+        TSPSolver.conquered = conquered;
+
         for(int i = 0; i < conquered.size(); i++) {
             TourManager.addCity(conquered.get(i));
         }
@@ -104,10 +105,9 @@ public class TSPSolver {
         for(int i = 0; i < shortestPath.length; i++) {
             conquered.add(i);
         }
-
+        
         TSPSolver.shortestPath = shortestPath;
-        TSPSolver.conquered = conquered;
-        TSPSolver.solve();
+        TSPSolver.solve(conquered);
 
         System.out.println("Final solution distance: " + TSPSolver.finalCost);
         System.out.println("Tour: " + finalOrdering);
