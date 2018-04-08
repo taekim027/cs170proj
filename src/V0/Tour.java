@@ -24,9 +24,6 @@ public class Tour{
     }*/
 
     public Tour(double[][] cost) {
-        /*for (int i = 0; i < TourManager.numberOfCities(); i++) {
-            tour.add(null);
-        }*/
         this.cost = cost;
     }
     
@@ -45,7 +42,6 @@ public class Tour{
         // Loop through all our destination cities and add them to our tour
         for (int cityIndex = 0; cityIndex < TourManager.numberOfCities(); cityIndex++) {
             tour.add(TourManager.getCity(cityIndex));
-            //setCity(cityIndex, TourManager.getCity(cityIndex));
         }
         // Randomly reorder the tour
         Collections.shuffle(tour);
@@ -71,10 +67,8 @@ public class Tour{
             for (int cityIndex=0; cityIndex < tourSize(); cityIndex++) {
 
                 // Get city we're traveling from
-                //City fromCity = getCity(cityIndex);
                 int fromCity = getCity(cityIndex);
                 // City we're traveling to
-                //City destinationCity;
                 int destinationCity;
                 // Check we're not on our tour's last city, if we are set our 
                 // tour's final destination city to our starting city
@@ -85,16 +79,8 @@ public class Tour{
                     destinationCity = getCity(0);
                 }
 
-                // Get the distance between the two cities
-                double distCost = cost[fromCity][destinationCity];
-                //if(distCost > 0) {
-                    tourDistance += distCost;
-                //} else {
-                //    tourDistance = Double.POSITIVE_INFINITY;
-                //}
-
-                //tourDistance += fromCity.distanceTo(destinationCity);
-
+                // Get the distance between the two cities, shouldn't be negative
+                tourDistance += cost[fromCity][destinationCity];
             }
             distance = tourDistance;
         }
@@ -106,14 +92,12 @@ public class Tour{
         return tour.size();
     }
 
-
     @Override
     public String toString() {
-
-        String geneString = "";
+        String result = "";
         for (int i = 0; i < tourSize(); i++) {
-            geneString += getCity(i) + " ";
+            result += getCity(i) + " ";
         }
-        return geneString;
+        return result;
     }
 }

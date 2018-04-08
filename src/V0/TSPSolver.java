@@ -3,6 +3,7 @@
  * Requires as an input the n x n shortest distance matrix and the list of cities to conquer
  * shortestPath should not have any negative entries
  * Finds shortest tour between the conquered cities
+ * Example usage in main()
  */
 
 package V0;
@@ -34,18 +35,15 @@ public class TSPSolver {
     }
 
     public static void solve(ArrayList<Integer> conquered) {
-        // Create and add our cities
-        
-        TSPSolver.conquered = conquered;
 
+        //initialize conquered list
+        TSPSolver.conquered = conquered;
         for(int i = 0; i < conquered.size(); i++) {
             TourManager.addCity(conquered.get(i));
         }
 
-        // Set initial temp
+        //temp and cooling rate hard coded for now
         double temp = 10000;
-
-        // Cooling rate
         double coolingRate = 0.003;
 
         // Initialize intial solution
@@ -63,13 +61,12 @@ public class TSPSolver {
             // Create new neighbour tour
             Tour newSolution = new Tour(currentSolution.getTour());
 
-            // Get a random positions in the tour
+            // TODO: might want to switch consecutive cities instead of random ones
+            // Get random positions in the tour
             int tourPos1 = (int) (newSolution.tourSize() * Math.random());
             int tourPos2 = (int) (newSolution.tourSize() * Math.random());
 
             // Get the cities at selected positions in the tour
-            //City citySwap1 = newSolution.getCity(tourPos1);
-            //City citySwap2 = newSolution.getCity(tourPos2);
             int citySwap1 = newSolution.getCity(tourPos1);
             int citySwap2 = newSolution.getCity(tourPos2);
 
@@ -100,6 +97,7 @@ public class TSPSolver {
     }
 
     public static void main(String[] args) {
+        //shortestPath n x n matrix
         double[][] shortestPath = new double[][]{
             { 0, 1, 2, 5},
             { 1, 0, 4, 3},
@@ -107,16 +105,18 @@ public class TSPSolver {
             { 5, 3, 6, 0},
         };
 
+        //list of cities to be conquered
         ArrayList<Integer> conquered = new ArrayList<>();
         for(int i = 0; i < shortestPath.length; i++) {
             conquered.add(i);
         }
         
+        //Usage example
         TSPSolver.shortestPath = shortestPath;
         TSPSolver.solve(conquered);
 
         System.out.println("Final solution distance: " + TSPSolver.finalCost);
-        System.out.println("Tour: " + finalOrdering);
+        System.out.println("Tour: " + TSPSolver.finalOrdering);
     }
 
 }

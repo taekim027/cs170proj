@@ -48,7 +48,7 @@ public class SimAnnMaster {
 
 
     public static SetCover solve(double temp, double coolingRate) {
-
+        //temp and cooling rate hard coded for now
         // Set initial temp
         temp = 10000;
         // Cooling rate

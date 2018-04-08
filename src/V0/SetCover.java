@@ -1,6 +1,6 @@
 /**
- * The list of cities to conquer that makes every city surrender is analogous to a set cover
- * States to the SimAnnMaster.java
+ * The list of cities to conquer, analogous to a set cover
+ * 'States' to the SimAnnMaster.java
  */
 
 package V0;
@@ -12,9 +12,10 @@ public class SetCover {
 		return null;
 	}
 
+	@Override
 	public SetCover clone() {
 		//TODO: return a copy of this
-        //maybe don't need to override?
+        //maybe don't need to override? idk how the native clone() works
 		return null;
 	}
 
