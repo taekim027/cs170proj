@@ -2,11 +2,11 @@ import edu.princeton.cs.algs4.MinPQ;
 
 public class Dijkstraproj {
 
-    public static City[][] cities;
-    public double[][] cost;
-    public int start;
-    public int end;
-    public int size;
+    public static City[][] cities; //matrix of cities [starting point][end point]
+    public double[][] cost; //cost[i][j] is price to go from ith city to jth city
+    public int start; //starting city
+    public int end; //end city
+    public int size; //number of cities
 
     public Dijkstraproj(double[][] cost, int start, int end) {
         this.cost = cost;
@@ -16,30 +16,32 @@ public class Dijkstraproj {
     }
 
     public double[][] dijkstra() {
-        int N = cost[0].length;
-        double[][] dist = new double[N][N];
+        int N = cost[0].length; // N is number of cities
+        double[][] dist = new double[N][N]; //initiates a large value for distances between cities
         for (int i = 0; i < N; i++) {
             for (int j = i; j < N; j++) {
                 dist[i][j] = 10000;
             }
         }
-        boolean[][] adj = adj(cost);
+        boolean[][] adj = adj(cost); //gets the adjacency matrix as true/false
         toString(adj);
-        boolean[][] visited = new boolean[N][N];
-        cities = new City[N][N];
+        boolean[][] visited = new boolean[N][N]; //visited matrix for Dijkstra purposes
+        cities = new City[N][N];//Creates matrix of cities [start][end]
         for (int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
-                visited[i][j] = false;
-                cities[i][j] = new City(j, 1000, false, null);
+                visited[i][j] = false; //none of the cities have been visited
+                cities[i][j] = new City(j, 1000, false, null); //creates new City with large distance from initial node
             }
         }
-        for (start = 0; start < size; start++) {
+        //Does Dijkstra from every point
+        for (start = 0; start < size; start++) { //increment over starting cities
 
-            MinPQ<City> pq = new MinPQ<>();
+            MinPQ<City> pq = new MinPQ<>();//PQ for Dijkstra
             pq.insert(cities[start][start]);
-            dist[start][start] = 0;
+            dist[start][start] = 0; //dist to self is 0
             cities[start][start].dist = 0;
-            cities[start][start].prev = null;
+            cities[start][start].prev = null; //There is no previous node
+            //implement dijkstra
             while (!pq.isEmpty()) {
                 City currcity = pq.delMin();
                 int curr = currcity.num;
@@ -48,12 +50,14 @@ public class Dijkstraproj {
                 for (int k = 0; k < N; k++) {
                     //if an edge
                     if (adj[curr][k] && curr != k && !visited[start][k] &&  k != start) {
+                        //update distances from starting city as necessary
                         if (dist[start][k] > dist[start][curr] + cost[curr][k]) {
                             dist[start][k] = dist[start][curr] + cost[curr][k];
                             cities[start][k].dist = dist[start][k];
                             cities[start][k].setPrev(currcity);
                             System.out.println(cities[start][k].num + " "+ cities[start][curr]);
                         }
+                        //add updated cities to PQ
                         pq.insert(cities[start][k]);
                     }
 
@@ -61,9 +65,9 @@ public class Dijkstraproj {
             }
         }
         toString(cities);
-        return dist;
+        return dist; //returns the shortest distances
     }
-
+    //creates adjacency matrix
     private static boolean[][] adj(double[][] cost) {
         int N = cost[0].length;
         boolean[][] adj = new boolean[N][N];
