@@ -1,6 +1,6 @@
 import edu.princeton.cs.algs4.MinPQ;
 
-public class Dijkstra {
+public class Dijkstraproj {
 
     public static City[][] cities;
     public double[][] cost;
@@ -8,7 +8,7 @@ public class Dijkstra {
     public int end;
     public int size;
 
-    public Dijkstra(double[][] cost, int start, int end) {
+    public Dijkstraproj(double[][] cost, int start, int end) {
         this.cost = cost;
         this.start = start;
         this.end = end;
@@ -92,7 +92,7 @@ public class Dijkstra {
                 {3, -1, -1, -1, 2, 6}
         };
         toString(cost);
-        toString(new Dijkstra(cost, 0, 5).dijkstra());
+        toString(new Dijkstraproj(cost, 0, 5).dijkstra());
     }
 
     public static void toString(double[][] obj) {
