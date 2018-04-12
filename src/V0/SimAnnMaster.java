@@ -11,7 +11,6 @@ public class SimAnnMaster {
     
     public static double[][] cost;
 
-
     // Calculate the acceptance probability
     public static double acceptanceProbability(double energy, double newEnergy, double temperature) {
         // If the new solution is better, accept it

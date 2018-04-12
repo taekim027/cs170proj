@@ -34,6 +34,7 @@ public class TSPSolver {
         return Math.exp((energy - newEnergy) / temperature);
     }
 
+    //Could probably be optimized much more for speed
     public static void solve(ArrayList<Integer> conquered) {
 
         //initialize conquered list
