@@ -14,8 +14,8 @@ public class Dijkstraproj {
         this.end = end;
         size = cost[0].length;
     }
-
-    public double[][] dijkstra() {
+    //returns shortest distances and the cities with previous nodes
+    public Object[] dijkstra() {
         int N = cost[0].length; // N is number of cities
         double[][] dist = new double[N][N]; //initiates a large value for distances between cities
         for (int i = 0; i < N; i++) {
@@ -64,8 +64,17 @@ public class Dijkstraproj {
                 }
             }
         }
+        Object[] o = new Object[2];
+        for(int i = 0; i < N; i++){
+            for(int j = i; j < N; j++){
+                dist[j][i] = dist[i][j];
+                cities[j][i] = cities[i][j];
+            }
+        }
+        o[0] = dist;
+        o[1] = cities;
         toString(cities);
-        return dist; //returns the shortest distances
+        return o; //returns the shortest distances and cities
     }
     //creates adjacency matrix
     private static boolean[][] adj(double[][] cost) {
@@ -96,7 +105,7 @@ public class Dijkstraproj {
                 {3, -1, -1, -1, 2, 6}
         };
         toString(cost);
-        toString(new Dijkstraproj(cost, 0, 5).dijkstra());
+        toString(new Dijkstraproj(cost, 0, 5).dijkstra()[0]);
     }
 
     public static void toString(double[][] obj) {

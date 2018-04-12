@@ -103,10 +103,11 @@ public class SimAnnMaster {
 
 
         //Call winston's method to find shortest path between all cities
-        double [][] shortestPath = (new Dijkstraproj(cost, 0, 5)).dijkstra();
+        Object o = (new Dijkstraproj(cost, 0, 5)).dijkstra();
+        double [][] shortestPath = o[0];
 
         //Generate an initial set cover, then convert into ArrayList<Integer>
-        SetCover
+        //SetCover
 
         ArrayList<Integer> conquered = new ArrayList<>();
         for (int i = 0; i < shortestPath.length; i++) {
