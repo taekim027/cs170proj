@@ -68,12 +68,12 @@ public class TSPSolver {
             int tourPos2 = (int) (newSolution.tourSize() * Math.random());
 
             // Get the cities at selected positions in the tour
-            int citySwap1 = newSolution.getCity(tourPos1);
-            int citySwap2 = newSolution.getCity(tourPos2);
+            //int citySwap1 = newSolution.getCity(tourPos1);
+            //int citySwap2 = newSolution.getCity(tourPos2);
 
             // Swap them
-            newSolution.setCity(tourPos2, citySwap1);
-            newSolution.setCity(tourPos1, citySwap2);
+            newSolution.setCity(tourPos2, newSolution.getCity(tourPos1));
+            newSolution.setCity(tourPos1, newSolution.getCity(tourPos2));
             
             // Get energy of solutions
             double currentEnergy = currentSolution.getDistance();
@@ -97,6 +97,8 @@ public class TSPSolver {
         finalOrdering = best.getTour();
     }
 
+
+    //Example usage
     public static void main(String[] args) {
         //shortestPath n x n matrix
         double[][] shortestPath = new double[][]{

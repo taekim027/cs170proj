@@ -7,8 +7,23 @@ package V0;
 
 public class SetCover {
 
+	//public static ArrayList<Integer> kingdoms;
+	public static double[][] shortestPath;
+	public static int num;
+
+	public ArrayList<Integer> conquered;		//the set cover
+
+	// the number of kingdoms is implicit
+	public SetCover(double[][] shortestPath) {
+		this.shortestPath = shortestPath;
+		num = shortestPath.length;
+		conquered = new ArrayList<Integer>();
+	}
+
 	public static SetCover generateRandomSC() {
 		//TODO: return a random initial state
+		//conquered = 
+
 		return null;
 	}
 
@@ -16,7 +31,9 @@ public class SetCover {
 	public SetCover clone() {
 		//TODO: return a copy of this
         //maybe don't need to override? idk how the native clone() works
-		return null;
+        SetCover cloned = new SetCover(shortestPath);
+        cloned.conquered = this.conquered;
+		return cloned;
 	}
 
 	public SetCover neighbor() {
@@ -27,7 +44,13 @@ public class SetCover {
 	public double getCost() {
 		//TODO: return the time it takes to tour this set cover.
 		// use the traveling salesman solver, TSPSolver to find this value
-		return 0;
+
+		//
+		TSPSolver.shortestPath = shortestPath;
+        TSPSolver.solve(conquered);
+
+        return TSPSolver.finalCost();
+        //System.out.println("Tour: " + TSPSolver.finalOrdering);
 	}
 
 }

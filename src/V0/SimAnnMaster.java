@@ -91,17 +91,22 @@ public class SimAnnMaster {
 
     public static void main(String[] args) {
 
-        //Call winston's method to find shortest path between all cities
-
-        double[][] shortestPath = new double[][]{
-                {0, 1, 2, 5},
-                {1, 0, 4, 3},
-                {2, 4, 0, 6},
-                {5, 3, 6, 0},
+        //from parser
+        this.cost = new double[][]{
+                {1, 2, -1, -1, 3, 3},
+                {2, 2, 3, -1, 3, -1},
+                {-1, 3, 3, 3, 2, -1},
+                {-1, -1, 3, 4, 2, -1},
+                {3, 3, 2, 2, 5, 2},
+                {3, -1, -1, -1, 2, 6}
         };
 
-        //Generate an initial set cover, then convert into ArrayList<Integer>
 
+        //Call winston's method to find shortest path between all cities
+        double [][] shortestPath = (new Dijkstraproj(cost, 0, 5)).dijkstra();
+
+        //Generate an initial set cover, then convert into ArrayList<Integer>
+        SetCover
 
         ArrayList<Integer> conquered = new ArrayList<>();
         for (int i = 0; i < shortestPath.length; i++) {
